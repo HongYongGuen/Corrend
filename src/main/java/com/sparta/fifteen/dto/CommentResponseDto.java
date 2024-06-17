@@ -2,10 +2,12 @@ package com.sparta.fifteen.dto;
 
 import com.sparta.fifteen.entity.Comment;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Setter
 public class CommentResponseDto {
     private Long id;
     private String comment;
@@ -28,4 +30,10 @@ public class CommentResponseDto {
     public static CommentResponseDto toDto(Comment comment) {
         return new CommentResponseDto(comment.getId(), comment.getComment(), comment.getLikes(), comment.getUser().getId(), comment.getNewsfeed().getId(), comment.getCreatedAt(), comment.getModifiedAt());
     }
+
+    public void setCommentId(long l) {
+        this.id = l;
+    }
+
+
 }
