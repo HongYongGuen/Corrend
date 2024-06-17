@@ -1,11 +1,13 @@
 package com.sparta.fifteen.config;
 
 import com.sparta.fifteen.jwt.JwtAuthenticationFilter;
+import com.sparta.fifteen.log.LoggingAspect;
 import com.sparta.fifteen.security.UserDetailsServiceImpl;
 import com.sparta.fifteen.service.LogoutAccessTokenService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -19,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
+@EnableAspectJAutoProxy
 public class WebSecurityConfig {
 
     private final UserDetailsServiceImpl userDetailsService;
@@ -43,6 +46,11 @@ public class WebSecurityConfig {
     @Bean
     public JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception{
         return new JwtAuthenticationFilter(userDetailsService, logoutAccessTokenService);
+    }
+
+    @Bean
+    public LoggingAspect loggingAspect() throws Exception{
+        return new LoggingAspect();
     }
 
     @Bean
