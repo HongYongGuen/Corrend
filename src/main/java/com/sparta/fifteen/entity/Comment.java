@@ -4,10 +4,12 @@ import com.sparta.fifteen.dto.CommentRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "comment")
 @Getter
+@Setter
 @NoArgsConstructor
 public class Comment extends Timestamped{
     @Id
